@@ -35,8 +35,21 @@ app.get("/vegetables", async (req, res) => {
 });
 
 // Show
+app.get("/vegetables/:id", async (req, res) => {
+  try {
+    const foundVegetable = await Vegetable.findOne({ _id: req.params.id });
+    res.render("vegetables/Show", {
+      vegetable: foundVegetable,
+    });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 
 // New
+app.get("/vegetables/new", (req, res) => {
+  res.render("vegetables/New");
+});
 
 app.listen(PORT, () => {
   console.log(`the port at ${PORT} is listening`);
