@@ -12,7 +12,7 @@ function New(props) {
         <br />
         Is Ready To Eat: <input type="checkbox" name="readyToEat" />
         <br />
-        <input type="submit" value="Create Vegetable" />
+        <input type="submit" value="Create vegetable" />
       </form>
     </div>
   );

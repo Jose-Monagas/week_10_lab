@@ -8,10 +8,9 @@ function Index(props) {
       <ul>
         {props.vegetables.map((vegetable) => {
           return (
-            <li key={fruit._id}>
-              <a href={`/vegetables/${fruit._id}`}>
-                {vegetable.name} is {vegetable.color}
-              </a>
+            <li key={vegetable._id}>
+              <a href={`/vegetables/${vegetable._id}`}>{vegetable.name}</a> is{" "}
+              {vegetable.color}
             </li>
           );
         })}

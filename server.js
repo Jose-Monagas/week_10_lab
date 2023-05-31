@@ -34,6 +34,25 @@ app.get("/vegetables", async (req, res) => {
   }
 });
 
+// New
+app.get("/vegetables/new", (req, res) => {
+  res.render("vegetables/New");
+});
+
+// Create (Used to create a vegetable)
+app.post("/vegetables", async (req, res) => {
+  if (req.body.readyToEat === "on") {
+    req.body.readyToEat = true;
+  } else {
+    req.body.readyToEat = false;
+  }
+  try {
+    const createdVegetable = await Vegetable.create(req.body);
+    res.redirect(`/vegetables/${createdVegetable._id}`);
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 // Show
 app.get("/vegetables/:id", async (req, res) => {
   try {
@@ -44,11 +63,6 @@ app.get("/vegetables/:id", async (req, res) => {
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
-});
-
-// New
-app.get("/vegetables/new", (req, res) => {
-  res.render("vegetables/New");
 });
 
 app.listen(PORT, () => {
